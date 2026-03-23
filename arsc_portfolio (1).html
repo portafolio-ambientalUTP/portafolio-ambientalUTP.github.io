@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARSC · Portafolio · Ing. Ambiental</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --abyss:   #050e1a;
+  --deep:    #0a1e35;
+  --ocean:   #0d3356;
+  --sea:     #1a5f7a;
+  --wave:    #2a8fa8;
+  --foam:    #4dbdd4;
+  --mist:    #9ddce8;
+  --spray:   #cdeef4;
+  --sand:    #eef5f0;
+  --cream:   #f5f9fa;
+  --coral:   #e07b5a;
+  --coral-lt:#eca080;
+  --white:   #fafefe;
+  --border:  rgba(77,189,212,.15);
+  --ink:     #071624;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.9rem 3.5rem;
+  background:rgba(5,14,26,.93);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(77,189,212,.1);
+}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;letter-spacing:.12em;color:var(--mist)}
+.nav-logo span{color:var(--foam)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:rgba(157,220,232,.6);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;transition:color .25s;font-weight:500}
+.nav-links a:hover{color:var(--foam)}
+
+.hero{
+  min-height:100vh;background:var(--abyss);
+  display:grid;grid-template-rows:1fr auto;
+  position:relative;overflow:hidden;padding-top:60px;
+}
+.hero-photo{
+  position:absolute;inset:0;
+  background-image:url('https://www.laestrella.com.pa/binrepository/699x466/0c0/0d0/none/199516884/DRUK/playa-la-marinera-31_181-9381582_20250211162747.jpg');
+  background-size:cover;background-position:center 40%;
+  opacity:.28;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom, rgba(5,14,26,.55) 0%, rgba(5,14,26,.2) 40%, rgba(5,14,26,.7) 100%),
+    radial-gradient(ellipse 70% 60% at 85% 25%, rgba(26,95,122,.3) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 50% at 5%  85%, rgba(42,143,168,.15) 0%, transparent 60%);
+}
+.wave-layer{
+  position:absolute;bottom:0;left:0;width:200%;height:110px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C150,100 350,0 600,60 C850,120 1050,20 1200,60 L1200,120 L0,120Z' fill='rgba(13,51,86,0.4)'/%3E%3C/svg%3E") repeat-x;
+  animation:waveMove 12s linear infinite;opacity:.6;
+}
+.wave-layer.w2{
+  bottom:10px;animation:waveMove 18s linear infinite reverse;opacity:.3;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,80 C200,20 400,100 600,50 C800,0 1000,90 1200,40 L1200,120 L0,120Z' fill='rgba(26,95,122,0.35)'/%3E%3C/svg%3E") repeat-x;
+}
+@keyframes waveMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.hero-inner{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:5rem 3.5rem 3rem;position:relative;z-index:2;max-width:900px;
+}
+.hero-label{
+  font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--foam);
+  margin-bottom:2rem;display:flex;align-items:center;gap:1rem;
+  animation:fadeUp .7s ease both;
+}
+.hero-label::before{content:'';width:36px;height:1px;background:var(--wave)}
+.hero-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(4.5rem,10vw,9.5rem);line-height:.9;
+  color:var(--white);letter-spacing:-.01em;margin-bottom:2rem;
+  animation:fadeUp .7s .12s ease both;
+}
+.hero-name em{font-style:italic;color:var(--foam);display:block;font-size:.52em;letter-spacing:.05em;margin-top:.3rem}
+.hero-desc{
+  font-size:1rem;line-height:1.9;color:rgba(157,220,232,.7);
+  max-width:500px;font-weight:300;margin-bottom:3rem;
+  animation:fadeUp .7s .24s ease both;
+}
+.hero-actions{display:flex;gap:1.2rem;flex-wrap:wrap;animation:fadeUp .7s .36s ease both}
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;padding:.75rem 1.8rem;
+  text-decoration:none;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:500;transition:all .25s;border-radius:1px;
+}
+.btn-coral{background:var(--coral);color:var(--white)}
+.btn-coral:hover{background:var(--coral-lt);transform:translateY(-2px)}
+.btn-outline{border:1px solid rgba(77,189,212,.3);color:var(--mist);background:transparent}
+.btn-outline:hover{border-color:var(--foam);color:var(--white)}
+
+.hero-stats{
+  display:flex;gap:3rem;padding:2rem 3.5rem;
+  border-top:1px solid rgba(77,189,212,.08);position:relative;z-index:2;
+}
+.stat{display:flex;flex-direction:column;gap:.2rem}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--foam);line-height:1}
+.stat-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(157,220,232,.5)}
+
+.about{
+  padding:7rem 3.5rem;background:var(--white);
+  display:grid;grid-template-columns:1fr 1.6fr;gap:5rem;align-items:start;
+}
+.about-aside{position:sticky;top:90px}
+.section-eyebrow{
+  font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;color:var(--wave);
+  margin-bottom:.8rem;display:flex;align-items:center;gap:.8rem;
+}
+.section-eyebrow::before{content:'';width:24px;height:1px;background:var(--wave)}
+.section-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.15;color:var(--ocean);margin-bottom:1.5rem;
+}
+.about-text{font-size:.95rem;line-height:1.9;color:#3a4a52;font-weight:300;margin-bottom:1.4rem}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:1.2rem;margin-top:2rem}
+.objective-list li{
+  display:flex;gap:1rem;font-size:.9rem;line-height:1.8;color:#3d4e54;font-weight:300;
+  padding-bottom:1.2rem;border-bottom:1px solid var(--border);
+}
+.objective-list li:last-child{border-bottom:none;padding-bottom:0}
+.obj-num{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--wave);line-height:1;min-width:28px;margin-top:.1rem}
+
+.courses{padding:6rem 3.5rem;background:var(--cream)}
+.courses-top{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:2.5rem;flex-wrap:wrap;gap:2rem;
+}
+.search-wrap{position:relative}
+.search-input{
+  padding:.65rem 1rem .65rem 2.6rem;border:1px solid var(--border);
+  background:var(--white);border-radius:2px;font-family:'DM Sans',sans-serif;
+  font-size:.85rem;color:var(--ink);width:260px;outline:none;transition:border-color .2s;
+}
+.search-input:focus{border-color:var(--wave)}
+.search-icon{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);color:var(--wave);pointer-events:none}
+.filter-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.tab{
+  padding:.45rem 1.1rem;border:1px solid var(--border);background:transparent;
+  border-radius:1px;cursor:pointer;font-family:'DM Sans',sans-serif;
+  font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sea);transition:all .2s;
+}
+.tab.active,.tab:hover{background:var(--ocean);color:var(--mist);border-color:var(--ocean)}
+
+.courses-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:1px;background:var(--border);border:1px solid var(--border);
+}
+.course-card{
+  background:var(--white);padding:1.5rem;
+  display:flex;flex-direction:column;gap:.5rem;
+  transition:background .2s;color:inherit;text-decoration:none;
+  position:relative;overflow:hidden;
+}
+.course-card::after{
+  content:'';position:absolute;left:0;bottom:0;
+  width:100%;height:2px;background:var(--foam);
+  transform:scaleX(0);transform-origin:left;transition:transform .25s;
+}
+.course-card:hover{background:var(--ocean)}
+.course-card:hover::after{transform:scaleX(1)}
+.course-card:hover .course-name{color:var(--spray)}
+.course-card:hover .course-cat{color:var(--foam)}
+.course-card:hover .course-arrow{color:var(--foam);transform:translateX(4px)}
+.course-card:hover .course-sem{color:rgba(205,238,244,.5)}
+.no-link-card{cursor:default}
+.no-link-card:hover{background:rgba(13,51,86,.04)!important}
+.no-link-card:hover .course-name{color:var(--ocean)!important}
+.no-link-card:hover .course-cat{color:var(--wave)!important}
+.no-link-card::after{display:none}
+.course-icon{font-size:1.3rem;margin-bottom:.1rem}
+.course-cat{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--wave);transition:color .2s;font-weight:500}
+.course-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;line-height:1.25;color:var(--ocean);transition:color .2s}
+.course-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:.4rem}
+.course-sem{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,143,168,.55);transition:color .2s}
+.course-arrow{font-size:.9rem;color:rgba(42,143,168,.35);transition:all .2s}
+.no-results{grid-column:1/-1;text-align:center;padding:4rem;font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--wave)}
+
+.extras{
+  padding:6rem 3.5rem;background:var(--deep);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+}
+.extra-card{
+  background:rgba(255,255,255,.03);border:1px solid rgba(77,189,212,.08);
+  padding:2.5rem;text-decoration:none;
+  display:flex;flex-direction:column;gap:1rem;transition:background .25s;color:inherit;
+}
+.extra-card:hover{background:rgba(26,95,122,.2)}
+.extra-icon{font-size:2rem}
+.extra-tag{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--foam)}
+.extra-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--spray);line-height:1.2}
+.extra-desc{font-size:.85rem;line-height:1.7;color:rgba(157,220,232,.5);font-weight:300}
+.extra-link-text{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--wave);margin-top:auto}
+
+footer{
+  background:var(--abyss);padding:2.5rem 3.5rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;letter-spacing:.1em;color:rgba(157,220,232,.5)}
+.footer-copy{font-size:.72rem;color:rgba(157,220,232,.25);letter-spacing:.04em}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:900px){
+  nav,.hero-inner,.hero-stats,.courses,.about,.extras,footer{padding-left:1.5rem;padding-right:1.5rem}
+  .about{grid-template-columns:1fr}
+  .extras{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero-name{font-size:clamp(3.5rem,15vw,6rem)}
+}
+@media(max-width:600px){
+  .courses-top{flex-direction:column;align-items:flex-start}
+  .search-input,.search-wrap{width:100%}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">ARSC <span>·</span> Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#about">Propósito</a></li>
+    <li><a href="#courses">Materias</a></li>
+    <li><a href="#extras">Recursos</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-bg"></div>
+  <div class="wave-layer"></div>
+  <div class="wave-layer w2"></div>
+  <div class="hero-inner">
+    <p class="hero-label">Portafolio Académico</p>
+    <h1 class="hero-name">
+      ARSC
+      <em>Ingeniería Ambiental</em>
+    </h1>
+    <p class="hero-desc">
+      Un repositorio organizado de apuntes, módulos, libros y recursos
+      seleccionados a lo largo de la carrera. Herramienta de reflexión
+      académica y referencia para el futuro.
+    </p>
+    <div class="hero-actions">
+      <a href="#courses" class="btn btn-coral">Explorar materias</a>
+      <a href="#extras" class="btn btn-outline">Ver recursos</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">44</span><span class="stat-label">Materias</span></div>
+    <div class="stat"><span class="stat-num">10</span><span class="stat-label">Semestres</span></div>
+    <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Conocimiento</span></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-aside reveal">
+    <p class="section-eyebrow">Propósito</p>
+    <h2 class="section-heading">Objetivo del<br><em style="font-style:italic;color:var(--wave)">portafolio</em></h2>
+    <p class="about-text">
+      Este portafolio nació como una iniciativa personal para documentar el proceso
+      académico de manera organizada, transformando años de estudio en un recurso
+      de valor permanente.
+    </p>
+  </div>
+  <ol class="objective-list reveal">
+    <li>
+      <span class="obj-num">01</span>
+      <span>Desarrollar un repositorio meticulosamente organizado que contenga apuntes, módulos, libros y recursos seleccionados de los estudios universitarios.</span>
+    </li>
+    <li>
+      <span class="obj-num">02</span>
+      <span>Evaluar de manera exhaustiva los conocimientos adquiridos a lo largo de los años académicos, identificando áreas de mejora y fortaleciendo habilidades.</span>
+    </li>
+    <li>
+      <span class="obj-num">03</span>
+      <span>Establecer un recurso de consulta valioso para el futuro, capturando información relevante que a veces se omite en el proceso educativo formal.</span>
+    </li>
+  </ol>
+</section>
+
+<section class="courses" id="courses">
+  <div class="courses-top reveal">
+    <div>
+      <p class="section-eyebrow">Catálogo</p>
+      <h2 class="section-heading">Materias cursadas</h2>
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" type="text" placeholder="Buscar materia..." id="searchInput" oninput="filterCourses()">
+    </div>
+  </div>
+  <div class="filter-tabs">
+    <button class="tab active" onclick="setFilter('todas',this)">Todas</button>
+    <button class="tab" onclick="setFilter('pre',this)">Pre-verano</button>
+    <button class="tab" onclick="setFilter('basicas',this)">Ciencias Básicas</button>
+    <button class="tab" onclick="setFilter('ingenieria',this)">Ingeniería</button>
+    <button class="tab" onclick="setFilter('ambiental',this)">Ambiental</button>
+    <button class="tab" onclick="setFilter('hidrica',this)">Recursos Hídricos</button>
+    <button class="tab" onclick="setFilter('gestion',this)">Gestión</button>
+  </div>
+  <div class="courses-grid" id="coursesGrid"></div>
+</section>
+
+<section class="extras" id="extras">
+  <a class="extra-card" href="https://docs.google.com/spreadsheets/d/1YpDY4ldCiZ2ZY_9CaKioczrMHMFQV2F2oLdlNmJ53Zg/edit" target="_blank">
+    <span class="extra-icon">🧑‍🏫</span>
+    <span class="extra-tag">Docentes</span>
+    <span class="extra-title">Profesores</span>
+    <p class="extra-desc">Registro de los profesores que impartieron cada materia a lo largo de la carrera.</p>
+    <span class="extra-link-text">Abrir en Sheets →</span>
+  </a>
+  <a class="extra-card" href="https://drive.google.com/drive/folders/1-Pr1B5QdIyAPl-930r7dOLrpI2rNv9Ip" target="_blank">
+    <span class="extra-icon">🗓️</span>
+    <span class="extra-tag">Organización</span>
+    <span class="extra-title">Horarios de Clase</span>
+    <p class="extra-desc">Horarios académicos organizados por semestre para consulta y referencia.</p>
+    <span class="extra-link-text">Ver horarios →</span>
+  </a>
+  <a class="extra-card" href="https://www.researchgate.net/profile/Andres-Santamaria-2/research" target="_blank">
+    <span class="extra-icon">📄</span>
+    <span class="extra-tag">Investigación</span>
+    <span class="extra-title">Publicaciones</span>
+    <p class="extra-desc">Trabajos académicos y publicaciones en ResearchGate.</p>
+    <span class="extra-link-text">Ver en ResearchGate →</span>
+  </a>
+</section>
+
+<footer>
+  <span class="footer-logo">ARSC · Ing. Ambiental</span>
+  <span class="footer-copy">© 2026 · Portafolio Estudiantil · Ingeniería Ambiental, UTP</span>
+</footer>
+
+<script>
+const COURSES = [
+  // PRE-VERANO
+  {name:"Precálculo",                         cat:"pre",        label:"Pre-verano",       icon:"📐", sem:"Pre-verano",   link:"https://drive.google.com/drive/folders/1ENb3wYOxmW9M_PkmJi35Cyl-fToZJSDg"},
+  {name:"Inducción a la vida universitaria",  cat:"pre",        label:"Pre-verano",       icon:"🎓", sem:"Pre-verano",   link:null},
+
+  // CIENCIAS BÁSICAS
+  {name:"Tópicos de Geografía e Historia",    cat:"basicas",    label:"Ciencias Básicas", icon:"🗺️", sem:"I Semestre",   link:"https://drive.google.com/drive/folders/1NReAx_X3ARkQgMgukZjbbTEyp3XC6FRB"},
+  {name:"Cálculo 1",                          cat:"basicas",    label:"Ciencias Básicas", icon:"∫",  sem:"I Semestre",   link:"https://drive.google.com/drive/folders/17cYzxXIAJVnnAIOGX9QWjpL25S6eRlUm"},
+  {name:"Química General",                    cat:"basicas",    label:"Ciencias Básicas", icon:"⚗️", sem:"I Semestre",   link:"https://drive.google.com/drive/folders/1CLSKBbfoQ46r1dVW3WHestwORaHmsTgF"},
+  {name:"Principios de Economía",             cat:"basicas",    label:"Ciencias Básicas", icon:"💹", sem:"II Semestre",  link:"https://drive.google.com/drive/folders/1rZoUe6JJgeHo9dUx2yAN-vYLAlM4mdUs"},
+  {name:"Cálculo 2",                          cat:"basicas",    label:"Ciencias Básicas", icon:"∫",  sem:"II Semestre",  link:"https://drive.google.com/drive/folders/1LjoVeKYupJHoRnPS_PzjUhvLzY5ygDuM"},
+  {name:"Cálculo 3",                          cat:"basicas",    label:"Ciencias Básicas", icon:"∫",  sem:"III Semestre", link:"https://drive.google.com/drive/folders/15JL4QVEL9pwD6qzg3Nqnp6TqrhcOm6-I"},
+  {name:"Química General II",                 cat:"basicas",    label:"Ciencias Básicas", icon:"⚗️", sem:"III Semestre", link:"https://drive.google.com/drive/folders/1_uXsCbQiDHI0zUMCJ9IaEE5hAybJeAiV"},
+  {name:"Física I — Mecánica",                cat:"basicas",    label:"Ciencias Básicas", icon:"⚙️", sem:"III Semestre", link:"https://drive.google.com/drive/folders/1Cd4ap3OAUBMNb58QMJK9eiX8r1XVmfxQ"},
+  {name:"Sistemas Contables",                 cat:"basicas",    label:"Ciencias Básicas", icon:"📋", sem:"IV Semestre",  link:"https://drive.google.com/drive/folders/1TzpOxkML5DYydHfP2xLXdDfais2wEDur"},
+  {name:"Ec. Diferenciales Ordinarias",       cat:"basicas",    label:"Ciencias Básicas", icon:"📈", sem:"IV Semestre",  link:"https://drive.google.com/drive/folders/1DXLnrDsLl31QWcsipjfGqvm6uIwHFP07"},
+  {name:"Física II — Eléctrica y Magnética",  cat:"basicas",    label:"Ciencias Básicas", icon:"⚡", sem:"IV Semestre",  link:"https://drive.google.com/drive/folders/1qRXOIDiSl49LdfJHu4vJHqRcEQ3phtU2"},
+  {name:"Programación",                       cat:"basicas",    label:"Ciencias Básicas", icon:"💾", sem:"V Semestre",   link:"https://drive.google.com/drive/folders/1z1khs4S3HVbCVEK4oA74u1aee6RpgJlm"},
+  {name:"Métodos Estadísticos en Ing.",       cat:"basicas",    label:"Ciencias Básicas", icon:"📊", sem:"V Semestre",   link:"https://drive.google.com/drive/folders/18KlOhaNMbRI_lF8ReJUD5XHZP6A4JmCc"},
+  {name:"Ecología General",                   cat:"basicas",    label:"Ciencias Básicas", icon:"🌿", sem:"V Semestre",   link:"https://drive.google.com/drive/folders/1tJQ9MXUo6mLJToIZivxQNXiiHo3UxAAY"},
+  {name:"Sociología",                         cat:"basicas",    label:"Ciencias Básicas", icon:"👥", sem:"VI Semestre",  link:"https://drive.google.com/drive/folders/1t_QIOySAOdZ67WHmwyqZC7jgxN3KAvJc"},
+  {name:"Matemáticas Superiores para Ing.",   cat:"basicas",    label:"Ciencias Básicas", icon:"🔢", sem:"VI Semestre",  link:"https://drive.google.com/drive/folders/1MxIJwDrkLzcEPjeoF27Ne7aUh1hMWuVy"},
+  {name:"Inglés — Oral & Writing",            cat:"basicas",    label:"Ciencias Básicas", icon:"🗣️", sem:"VI Semestre",  link:"https://drive.google.com/drive/folders/1cAmTZby85h6iweNQNX_jgFdzAtpCu55j"},
+
+  // INGENIERÍA
+  {name:"Representaciones Gráficas",          cat:"ingenieria", label:"Ingeniería",        icon:"📐", sem:"II Semestre",  link:"https://drive.google.com/drive/folders/103in0_wDjWGJoX9qN-I-n_vk7J7dwf8X"},
+  {name:"Redacción de Informes",              cat:"ingenieria", label:"Ingeniería",        icon:"✍️", sem:"II Semestre",  link:"https://drive.google.com/drive/folders/1BkGkL9H1HjAL4sIKqRA8IB8b_4jn5ALO"},
+  {name:"Geometría Descriptiva",              cat:"ingenieria", label:"Ingeniería",        icon:"📏", sem:"III Semestre", link:"https://drive.google.com/drive/folders/1dDo_C4abq94yN2mCUkN6Jq-TZyFIu_QS"},
+  {name:"Estática",                           cat:"ingenieria", label:"Ingeniería",        icon:"⚖️", sem:"IV Semestre",  link:"https://andresrogelio26.wixsite.com/my-site-1?classId=ab9a3885-4306-4c75-8eeb-e0d2f6508758&assignmentId=dd17363b-6034-4ff3-84de-61032303ed93&submissionId=cf7c716c-ed85-cae8-9fbf-d6d2ed5fdff8"},
+  {name:"Dinámica",                           cat:"ingenieria", label:"Ingeniería",        icon:"🌀", sem:"VI Semestre",  link:"https://drive.google.com/drive/folders/1oNxNX0_3zUg5h59b9ttYUqaDHIbVniAk"},
+  {name:"Mecánica de Cuerpos Deformables",    cat:"ingenieria", label:"Ingeniería",        icon:"🔩", sem:"VI Semestre",  link:"https://drive.google.com/drive/folders/1GSxm7CxQ0wTc3tkzqMAtvXc8R0hEuVQx"},
+  {name:"Topografía",                         cat:"ingenieria", label:"Ingeniería",        icon:"🏔️", sem:"VII Semestre", link:"https://drive.google.com/drive/folders/1yYcF1u4eq7RbV5Ogo868uz8ytrqAlRCa"},
+  {name:"Soluciones Numéricas para Ing.",     cat:"ingenieria", label:"Ingeniería",        icon:"💻", sem:"VII Semestre", link:"https://drive.google.com/drive/folders/1oC4lW6XICEPIR_30aWhDxVfYBc_tv_72"},
+  {name:"Termodinámica",                      cat:"ingenieria", label:"Ingeniería",        icon:"🌡️", sem:"VIII Semestre",link:"https://drive.google.com/drive/folders/1hc4mAS3zRBL5sn6PvLs5CBqqI5dFUyJ-"},
+  {name:"Mecánica de Suelos",                 cat:"ingenieria", label:"Ingeniería",        icon:"🪨", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1Qni8rqsICo4G27BTvFM0K7QI0zVKTU2g"},
+  {name:"Higiene y Seguridad Industrial",     cat:"ingenieria", label:"Ingeniería",        icon:"🦺", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/13s3RrXXYoIbYccTXle3Ork0y8M0fQUvx"},
+
+  // AMBIENTAL
+  {name:"Geología",                           cat:"ambiental",  label:"Ambiental",         icon:"🪨", sem:"VII Semestre", link:"https://drive.google.com/drive/folders/1NM7q7_GB4kQjitg9dceK0dAlUFpBc7OH"},
+  {name:"Desechos Sólidos",                   cat:"ambiental",  label:"Ambiental",         icon:"♻️", sem:"VIII Semestre",link:"https://drive.google.com/drive/folders/1SqL-NpVuwGj3N-Ko9vRJ_5iqm5-rLNjr"},
+  {name:"Microbiología Ambiental",            cat:"ambiental",  label:"Ambiental",         icon:"🦠", sem:"VIII Semestre",link:"https://drive.google.com/drive/folders/1N5X365TS1QDIa-5I5Ei_eE6CnOn1c3-D"},
+  {name:"Desechos Industriales y Peligrosos", cat:"ambiental",  label:"Ambiental",         icon:"☢️", sem:"VIII Semestre",link:"https://drive.google.com/drive/folders/1-0MH02gmlB7QIP-KggkkUVey2tXVxJkD"},
+  {name:"Legislación Sanitaria y Ambiental",  cat:"ambiental",  label:"Ambiental",         icon:"⚖️", sem:"VIII Semestre",link:"https://drive.google.com/drive/folders/1X0X0AcQN7Yl8IxsFEWA9UDOhZEKm10Er"},
+  {name:"Elementos de Geomática",             cat:"ambiental",  label:"Ambiental",         icon:"🛰️", sem:"VIII Semestre",link:"https://drive.google.com/drive/folders/10a8EIdSmgddXe9YQgqSobAiA-2mEQeBw"},
+  {name:"Contaminación Atmosférica",          cat:"ambiental",  label:"Ambiental",         icon:"💨", sem:"IX Semestre",  link:"https://drive.google.com/drive/folders/1l-79F13MAZSMFSzXM6xL3EhI1-BDSLWl"},
+  {name:"Ecotoxicología",                     cat:"ambiental",  label:"Ambiental",         icon:"🧪", sem:"IX Semestre",  link:"https://drive.google.com/drive/folders/1pUvGj6NMf2pmPbW1bCU_u6dCfy-pPyUp"},
+  {name:"Auditoría Ambiental",                cat:"ambiental",  label:"Ambiental",         icon:"📋", sem:"IX Semestre",  link:"https://drive.google.com/drive/folders/1gCEcvTWxoUsLm2rsGdWrIcwaGU8C8aoN"},
+  {name:"CC y Desarrollo Sostenible",         cat:"ambiental",  label:"Ambiental",         icon:"🌱", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/10Gm4HzqE07vdEQ6ofi4FYjox3_5EejDJ"},
+  {name:"Calidad Ambiental",                  cat:"ambiental",  label:"Ambiental",         icon:"🌍", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1rTgu6Dy3AlaSZSEBtz1abMl5lLyEmcGx"},
+  {name:"Evaluación de Impacto Ambiental",    cat:"ambiental",  label:"Ambiental",         icon:"📝", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1JaPqKhUfYpJ0_rmiaXjwQzxqHHAVbQFx"},
+
+  // RECURSOS HÍDRICOS
+  {name:"Mecánica de Fluidos (1er intento)",  cat:"hidrica",    label:"Recursos Hídricos", icon:"💧", sem:"VII Semestre", link:"https://drive.google.com/drive/folders/1wW73x8MA5IjyS0C8wqtKjazYJoTJZ64H"},
+  {name:"Mecánica de Fluidos (2do intento)",  cat:"hidrica",    label:"Recursos Hídricos", icon:"💧", sem:"VIII Semestre",link:"https://drive.google.com/drive/folders/1j3Z46Atjxs6Cf4xmEHbszdAHCdD-Xpk6"},
+  {name:"Mecánica de Fluidos (3er intento)",  cat:"hidrica",    label:"Recursos Hídricos", icon:"💧", sem:"IX Semestre",  link:"https://drive.google.com/drive/folders/1V38g-D8kGE90qJmTktmdpj25OCwGHYiE"},
+  {name:"Hidráulica",                         cat:"hidrica",    label:"Recursos Hídricos", icon:"🌊", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1kLVloqbSqd_zVupdoSovt5KgWJMpmyzW"},
+  {name:"Gestión de Riesgos",                 cat:"hidrica",    label:"Recursos Hídricos", icon:"⚠️", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1JCvfZ1dAymMgwuJ6jgPvZvW_JVHNnmSG"},
+  {name:"Modelado Hidrológico e Hidráulico",  cat:"hidrica",    label:"Recursos Hídricos", icon:"📡", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1Yb8HPJnttufi_U4QVXAGcJX0ItIFU3lT"},
+  {name:"Mecánica de Suelos",                 cat:"hidrica",    label:"Recursos Hídricos", icon:"🪨", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1Qni8rqsICo4G27BTvFM0K7QI0zVKTU2g"},
+  {name:"Acueductos Rurales y Urbanos",       cat:"hidrica",    label:"Recursos Hídricos", icon:"🚰", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1-uRTAKQoi1ftnLzXaZxadflAWHtsSfsv"},
+  {name:"Hidrología",                         cat:"hidrica",    label:"Recursos Hídricos", icon:"🌧️", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1Ab25eSiDAtCPyYy-NzwddxkhDvI7NLDY"},
+  {name:"CC y Des. Sostenible (hídrica)",     cat:"hidrica",    label:"Recursos Hídricos", icon:"🌱", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/10Gm4HzqE07vdEQ6ofi4FYjox3_5EejDJ"},
+  {name:"Aguas Subterráneas",                 cat:"hidrica",    label:"Recursos Hídricos", icon:"🏔️", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1oO2QmZ966q5985BiUaELLlhMyhzswIQn"},
+  {name:"Gestión de Proyectos",               cat:"hidrica",    label:"Recursos Hídricos", icon:"📌", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1lSG24Vd1TwpC7aevAUTwN7uGnx5BBh5c"},
+  {name:"Sistemas de Alcantarillados",        cat:"hidrica",    label:"Recursos Hídricos", icon:"🔧", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1NmryCmyk4Tk91tOZrbwtQ07IKPXrKyZQ"},
+  {name:"Mediciones Hidrológicas y Amb.",     cat:"hidrica",    label:"Recursos Hídricos", icon:"📏", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1tpwkRBYkl1MrcOATQlsNOEDgH_SST1KE"},
+  {name:"Manejo de Cuencas",                  cat:"hidrica",    label:"Recursos Hídricos", icon:"🗺️", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1HCPRa-zISgIfTq7C6G1minRHN_N85-yC"},
+  {name:"Tratamiento de Agua Potable",        cat:"hidrica",    label:"Recursos Hídricos", icon:"💦", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1NnufWQU5GJuEwYfHJ-94kYnYzwyQ3PHH"},
+  {name:"Tratamiento de Aguas Residuales",    cat:"hidrica",    label:"Recursos Hídricos", icon:"🧫", sem:"X Semestre",   link:"https://drive.google.com/drive/folders/1YfCnt35fE300wJev5QIQC6JjJ6SMjZQG"},
+
+  // GESTIÓN
+  {name:"Ética y Responsabilidad Profesional",cat:"gestion",    label:"Gestión",           icon:"🎯", sem:"VIII Semestre",link:"https://drive.google.com/drive/folders/13jcVoPClNMbJ6HMTIECmvg8sgcA5C8_B"},
+  {name:"Práctica de Campo I",                cat:"gestion",    label:"Gestión",           icon:"🏕️", sem:"VIII Semestre",link:"https://drive.google.com/drive/folders/1MB2KTh1AAB9NezSe8B618d8VUxwF0Tll"},
+  {name:"Metodología de la Investigación",    cat:"gestion",    label:"Gestión",           icon:"🔬", sem:"IX Semestre",  link:"https://drive.google.com/drive/folders/1W97Q-lDk8s5-3xwKkhs4OSTQrxfOWV14"},
+];
+
+let currentFilter = 'todas';
+
+function setFilter(cat, btn){
+  currentFilter = cat;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  filterCourses();
+}
+
+function filterCourses(){
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const grid = document.getElementById('coursesGrid');
+  grid.innerHTML = '';
+  const filtered = COURSES.filter(c=>{
+    const matchCat = currentFilter==='todas' || c.cat===currentFilter;
+    const matchQ   = !q || c.name.toLowerCase().includes(q) || c.label.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+  if(!filtered.length){
+    grid.innerHTML='<div class="no-results">No se encontraron materias 🌊</div>';
+    return;
+  }
+  filtered.forEach(c=>{
+    const tag  = c.link ? 'a' : 'div';
+    const card = document.createElement(tag);
+    if(c.link){card.href=c.link;card.target='_blank';}
+    card.className = 'course-card'+(c.link?'':' no-link-card');
+    card.innerHTML = `
+      <span class="course-icon">${c.icon}</span>
+      <span class="course-cat">${c.label}</span>
+      <span class="course-name">${c.name}</span>
+      <div class="course-bottom">
+        <span class="course-sem">${c.sem}</span>
+        <span class="course-arrow">${c.link?'↗':''}</span>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+const obs = new IntersectionObserver(
+  entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),
+  {threshold:.12}
+);
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+filterCourses();
+</script>
+</body>
+</html>
